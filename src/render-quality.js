@@ -41,6 +41,22 @@ export function fitCameraToRadius(camera, controls, radius){
   controls.update();
 }
 
+/**
+ * Fit a wide, flat composition. fitCameraToRadius assumes a roughly spherical
+ * subject; for something much wider than it is tall (a phylogeny, a timeline)
+ * that over-zooms badly, because the vertical field ends up covering the full
+ * horizontal half-extent. This fits the box instead.
+ */
+export function fitCameraToBox(camera, controls, halfW, halfH, margin = 1.06){
+  const vFov = THREE.MathUtils.degToRad(camera.fov);
+  const hFov = 2 * Math.atan(Math.tan(vFov/2) * camera.aspect);
+  const dist = Math.max(halfH / Math.tan(vFov/2), halfW / Math.tan(hFov/2)) * margin;
+  if(dist > controls.maxDistance) controls.maxDistance = dist * 1.05;
+  const dir = camera.position.clone().sub(controls.target).normalize();
+  camera.position.copy(controls.target).addScaledVector(dir, dist);
+  controls.update();
+}
+
 const noise = new ImprovedNoise();
 
 /**
