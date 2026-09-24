@@ -1,0 +1,21 @@
+{
+  "name": "genome-viz-core",
+  "version": "0.1.0",
+  "description": "Shared three.js scenes and build guards for interactive genome explainers",
+  "type": "module",
+  "exports": {
+    "./theme": "./src/theme.js",
+    "./sway": "./src/sway.js",
+    "./zoom-gate": "./src/zoom-gate.js",
+    "./render-quality": "./src/render-quality.js",
+    "./scenes/nucleus": "./src/scene-nucleus.js",
+    "./scenes/helix": "./src/scene-helix.js",
+    "./scenes/chromatin": "./src/scene-chromatin.js",
+    "./scenes/enhancer": "./src/scene-enhancer.js",
+    "./scenes/meth-contexts": "./src/scene-meth-contexts.js",
+    "./build-artifact": "./build-artifact.mjs",
+    "./check-build": "./scripts/check-build.mjs"
+  },
+  "peerDependencies": { "three": ">=0.160.0", "gsap": ">=3.12.0" },
+  "license": "MIT"
+}
